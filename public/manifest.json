@@ -1,0 +1,17 @@
+{
+  "name": "YT Media Test Downloader",
+  "short_name": "YT Test",
+  "description": "Testing website YouTube video and music downloader.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
