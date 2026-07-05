@@ -65,6 +65,15 @@ type HistoryItem = {
 };
 
 const HISTORY_KEY = "yt-6767-downloader-history-v1";
+const AD_INDEX_KEY = "yt-6767-ad-index-v1";
+
+const AD_LINKS = [
+  "https://www.effectivecpmnetwork.com/ei197f8i?key=7296ce5ce218473810261eabd049ad7d",
+  "https://www.effectivecpmnetwork.com/d36pkfnfb?key=98d72eaac9931c3e080dcce9d4d807a0",
+  "https://www.effectivecpmnetwork.com/fun79qde?key=f23c4db3393a77a42ef5412b1a75053a",
+  "https://www.effectivecpmnetwork.com/uyd5pi1y7g?key=ecda7388108e4bf6b485ab620343f53a",
+  "https://www.effectivecpmnetwork.com/z55w4h3qx2?key=b3e81a33d4a9ac5be6d499f5f1bd6274",
+];
 
 const YOUTUBE_ITAGS: Record<
   string,
@@ -637,10 +646,30 @@ function dedupeLinks(links: MediaLink[]) {
 }
 
 function audioStateLabel(state: AudioState) {
-  if (state === "with-audio") return "Ada suara";
-  if (state === "no-audio") return "Tanpa suara";
-  if (state === "audio-only") return "Audio only";
-  return "Belum pasti";
+  if (state === "with-audio") return "Ada\u00A0suara";
+  if (state === "no-audio") return "Tanpa\u00A0suara";
+  if (state === "audio-only") return "Audio\u00A0only";
+  return "Belum\u00A0pasti";
+}
+
+function badgeText(value: string) {
+  return value.replace(/\s+/g, "\u00A0");
+}
+
+function openNextAd() {
+  try {
+    const rawIndex = window.localStorage.getItem(AD_INDEX_KEY);
+    const currentIndex = Number(rawIndex || "0");
+    const safeIndex = Number.isFinite(currentIndex) ? currentIndex : 0;
+    const adUrl = AD_LINKS[safeIndex % AD_LINKS.length];
+    window.localStorage.setItem(
+      AD_INDEX_KEY,
+      String((safeIndex + 1) % AD_LINKS.length),
+    );
+    window.open(adUrl, "_blank", "noopener,noreferrer");
+  } catch {
+    window.open(AD_LINKS[0], "_blank", "noopener,noreferrer");
+  }
 }
 
 function cleanYouTubeUrl(value: string) {
@@ -891,6 +920,7 @@ export default function Home() {
       return;
     }
 
+    openNextAd();
     setLoading(mode);
 
     try {
@@ -1118,7 +1148,9 @@ export default function Home() {
                               >
                                 {item.badges.map((badge) => (
                                   <span className="media-pill" key={badge}>
-                                    {badge}
+                                    <span className="pill-text">
+                                      {badgeText(badge)}
+                                    </span>
                                   </span>
                                 ))}
                                 {item.audioState !== "unknown" ? (
@@ -1130,7 +1162,9 @@ export default function Home() {
                                     ) : (
                                       <Volume2 />
                                     )}
-                                    {audioStateLabel(item.audioState)}
+                                    <span className="pill-text">
+                                      {audioStateLabel(item.audioState)}
+                                    </span>
                                   </span>
                                 ) : null}
                               </div>
@@ -1372,9 +1406,9 @@ export default function Home() {
                 {loading === "video" ? "Memproses..." : "Proses Video"}
               </button>
               <p className="compact-note">
-                Pakai untuk konten yang memang boleh lu gunakan: no copyright,
-                Creative Commons, atau karya sendiri. Hukum hak cipta itu
-                membosankan, tapi tetap bisa menggigit.
+                Saat proses, iklan dibuka di tab baru supaya halaman ini tetap
+                memproses link sampai hasil siap. Pakai konten yang memang boleh
+                lu gunakan: no copyright, Creative Commons, atau karya sendiri.
               </p>
             </form>
             {renderResultBox("video")}
@@ -1456,8 +1490,9 @@ export default function Home() {
                 {loading === "music" ? "Memproses..." : "Proses Musik"}
               </button>
               <p className="compact-note">
-                Kalau API cuma ngasih video tanpa audio terpisah, halaman ini
-                bakal bilang jujur. Tidak seperti judul clickbait.
+                Saat proses musik, iklan dibuka di tab baru dan halaman ini tetap
+                jalan di belakang. Kalau API cuma ngasih video tanpa audio,
+                hasilnya bakal ditandai jujur.
               </p>
             </form>
             {renderResultBox("music")}
