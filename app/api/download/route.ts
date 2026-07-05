@@ -5,6 +5,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
+type DownloadResult = {
+  Status?: boolean;
+  Code?: number;
+  Input?: string | null;
+  Endpoint?: string | null;
+  Result?: unknown;
+  Error?: string | null;
+  [key: string]: unknown;
+};
+
 function json(data: unknown, status = 200) {
   return NextResponse.json(data, {
     status,
@@ -23,7 +33,7 @@ export async function GET(req: Request) {
       return json({ Status: false, Error: "URL is required" }, 400);
     }
 
-    const result = await downr(url);
+    const result = (await downr(url)) as DownloadResult;
     return json(result, result.Status ? 200 : 502);
   } catch (error) {
     return json(
@@ -45,7 +55,7 @@ export async function POST(req: Request) {
       return json({ Status: false, Error: "URL is required" }, 400);
     }
 
-    const result = await downr(url);
+    const result = (await downr(url)) as DownloadResult;
     return json(result, result.Status ? 200 : 502);
   } catch (error) {
     return json(
