@@ -735,49 +735,49 @@ const promoCards = [
   {
     kind: "website featured",
     title: "Website Landing Page DATZON",
-    desc: "Cek landing page utama, project, store, dan pintu masuk layanan DATZON.",
+    desc: "Landing utama DATZON.",
     href: "https://datzon.my.id",
   },
   {
     kind: "whatsapp featured",
     title: "WA DATZON",
-    desc: "Join saluran aplikasi MOD, update store, dan info terbaru DATZON.",
+    desc: "Update app & info.",
     href: "https://whatsapp.com/channel/0029VaLWvFyKWEKjhLtp0H3j",
   },
   {
     kind: "whatsapp",
     title: "WA DANZSHIKII",
-    desc: "Channel preset Alight Motion dan bahan edit, biar nggak mulai dari nol terus-terusan.",
+    desc: "Preset & bahan edit.",
     href: "https://whatsapp.com/channel/0029VbBGRHB2phHSTGzF7v2C",
   },
   {
     kind: "tiktok",
     title: "TikTok Datzon",
-    desc: "Follow dan support konten DATZON.",
+    desc: "Konten DATZON.",
     href: "https://www.tiktok.com/@datzonn?_r=1&_t=ZS-96GmThHXh5z",
   },
   {
     kind: "tiktok",
     title: "TikTok Danzshikii",
-    desc: "Follow akun kreator dan update bahan edit.",
+    desc: "Update kreator.",
     href: "https://www.tiktok.com/@danzshiiki?_r=1&_t=ZS-96GmV4G7fku",
   },
   {
     kind: "store",
     title: "Alight Motion 1.5K",
-    desc: "Order premium Alight Motion.",
+    desc: "Premium Alight Motion.",
     href: "https://wa.link/0s10b2",
   },
   {
     kind: "mod",
     title: "Wink Premium 4K",
-    desc: "Order premium Wink untuk kebutuhan edit.",
+    desc: "Wink Premium 4K.",
     href: "https://wa.link/czzwuf",
   },
   {
     kind: "store featured",
     title: "Produk Lainnya",
-    desc: "Kunjungi store DATZON untuk akun premium, aplikasi, dan item lain.",
+    desc: "Store premium DATZON.",
     href: "https://datzon.vercel.app/#store",
   },
 ];
@@ -999,6 +999,15 @@ export default function Home() {
     localStorage.removeItem(HISTORY_KEY);
     setHistory([]);
     showToast("success", "History dibersihkan.");
+  }
+
+  function goToTool(target: RequestMode) {
+    setActiveTab(target);
+    window.setTimeout(() => {
+      document
+        .getElementById(`${target}-tool`)
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
   }
 
   function renderResultBox(mode: RequestMode) {
@@ -1276,14 +1285,14 @@ export default function Home() {
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => setActiveTab("video")}
+              onClick={() => goToTool("video")}
             >
               <FileVideo /> Video Downloader
             </button>
             <button
               className="btn btn-green"
               type="button"
-              onClick={() => setActiveTab("music")}
+              onClick={() => goToTool("music")}
             >
               <Music2 /> Music Extractor
             </button>
@@ -1346,7 +1355,7 @@ export default function Home() {
       {activeTab === "video" ? (
         <section className="tab-panel">
           <div className="yt-layout">
-            <form className="panel" onSubmit={submitVideo}>
+            <form className="panel scroll-target" id="video-tool" onSubmit={submitVideo}>
               <div className="section-head">
                 <div>
                   <h2 className="section-title">
@@ -1419,7 +1428,7 @@ export default function Home() {
       {activeTab === "music" ? (
         <section className="tab-panel">
           <div className="yt-layout">
-            <form className="panel" onSubmit={submitMusic}>
+            <form className="panel scroll-target" id="music-tool" onSubmit={submitMusic}>
               <div className="section-head">
                 <div>
                   <h2 className="section-title">
@@ -1512,8 +1521,7 @@ export default function Home() {
                   Promosi
                 </h2>
                 <p className="section-desc">
-                  Bagian promo dipisah biar rapi, bukan ditumpuk di bawah hasil
-                  download seperti lemari kabel bekas.
+                  Link promo penting, dibuat ringkas biar nggak makan layar.
                 </p>
               </div>
             </div>
@@ -1540,8 +1548,7 @@ export default function Home() {
               ))}
             </div>
             <div className="promo-note">
-              Promosi tetap dipisah seperti style ZIP referensi. Lebih rapi,
-              lebih gampang diklik, dan tidak berubah jadi pasar malam CSS.
+              Promo ringkas, tetap gampang diklik, tidak jadi pasar malam CSS.
             </div>
           </div>
         </section>
