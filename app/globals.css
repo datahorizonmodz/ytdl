@@ -447,3 +447,116 @@ svg { width: 20px; height: 20px; stroke-width: 2.35; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Compact v2: biar mobile nggak berasa baca poster konser di layar 6 inci */
+.app-shell { width: min(1040px, calc(100% - 20px)); padding: 16px 0 32px; }
+.topbar { padding: 11px; margin-bottom: 14px; border-radius: 22px; }
+.brand { gap: 10px; }
+.brand-mark { width: 46px; height: 46px; border-radius: 15px; }
+.brand-mark svg { width: 25px; height: 25px; }
+.brand-title { font-size: clamp(1.2rem, 4.5vw, 1.7rem); letter-spacing: .12em; }
+.brand-sub { font-size: .72rem; letter-spacing: .09em; }
+.badge { padding: 8px 10px; font-size: .68rem; }
+.badge svg { width: 15px; height: 15px; }
+.hero { gap: 14px; margin-bottom: 14px; }
+.hero-card { min-height: auto; padding: clamp(18px, 3.2vw, 28px); border-radius: 24px; }
+.hero-kicker { font-size: .68rem; letter-spacing: .14em; }
+.hero-title { font-size: clamp(2rem, 7.8vw, 4rem); letter-spacing: .09em; margin: 12px 0 10px; }
+.hero-desc { font-size: .86rem; line-height: 1.6; margin-bottom: 16px; }
+.btn { min-height: 42px; border-radius: 14px; padding: 0 14px; gap: 8px; font-size: .82rem; letter-spacing: .03em; }
+.btn svg { width: 17px; height: 17px; }
+.tabs { margin-bottom: 14px; border-radius: 20px; padding: 7px; gap: 6px; }
+.tab-btn { min-height: 44px; border-radius: 15px; font-size: .72rem; letter-spacing: .07em; }
+.panel { padding: clamp(16px, 3.2vw, 24px); margin-bottom: 14px; border-radius: 24px; }
+.yt-layout { gap: 14px; }
+.section-head { gap: 10px; margin-bottom: 14px; }
+.section-title { gap: 10px; font-size: clamp(1.15rem, 3.4vw, 1.55rem); letter-spacing: .07em; }
+.section-desc { font-size: .84rem; line-height: 1.5; }
+.tool-icon, .stat-icon { width: 38px; height: 38px; border-radius: 13px; }
+.tool-icon svg, .stat-icon svg { width: 19px; height: 19px; }
+.input-box { min-height: 54px; border-radius: 18px; padding: 0 12px; }
+.input-box input { height: 52px; font-size: .9rem; }
+.input-box svg { width: 20px; height: 20px; }
+.inline-tools { gap: 8px; margin: 10px 0; }
+.compact-note, .tips-card, .yt-help, .promo-note { padding: 13px; border-radius: 16px; font-size: .78rem; line-height: 1.55; }
+.mini-dashboard { padding: 15px; gap: 10px; }
+.mini-title { font-size: .98rem; }
+.mini-stat { padding: 12px; border-radius: 17px; }
+.mini-stat strong { font-size: 1.25rem; }
+.mini-stat span { font-size: .64rem; }
+.success-card, .error-card { padding: 13px; border-radius: 18px; gap: 10px; }
+.success-card svg, .error-card svg { width: 30px; height: 30px; flex-basis: 30px; }
+.success-card strong, .error-card strong { font-size: .98rem; }
+.success-card span, .error-card span { font-size: .8rem; }
+.filter-row { gap: 7px; margin: 10px 0 13px; }
+.filter-btn { min-height: 34px; padding: 0 11px; font-size: .78rem; }
+.format-section { padding: 12px; border-radius: 18px; }
+.format-head { gap: 10px; margin-bottom: 10px; }
+.format-head strong { font-size: .96rem; }
+.media-icon { width: 40px; height: 40px; border-radius: 14px; }
+.media-icon.small { width: 36px; height: 36px; border-radius: 12px; }
+.media-icon svg { width: 18px; height: 18px; }
+.media-row { padding: 12px; border-radius: 17px; }
+.media-row-top { gap: 10px; }
+.media-meta strong { font-size: .94rem; }
+.media-meta span { font-size: .72rem; line-height: 1.35; }
+.result-actions { gap: 8px; margin-top: 10px; }
+.thumb-preview { max-height: 210px; border-radius: 14px; }
+.footer-note { font-size: .75rem; margin-top: 16px; }
+
+.media-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+.media-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 25px;
+  padding: 0 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, .22);
+  background: rgba(255,255,255,.045);
+  color: var(--soft);
+  font-size: .66rem;
+  font-weight: 900;
+  letter-spacing: .03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.media-pill svg { width: 13px; height: 13px; }
+.media-pill.audio-state.with-audio { color: #a8ffd3; border-color: rgba(40,209,124,.35); background: rgba(40,209,124,.12); }
+.media-pill.audio-state.no-audio { color: #ffd0dc; border-color: rgba(255,56,107,.35); background: rgba(255,56,107,.12); }
+.media-pill.audio-state.audio-only { color: #a9e6ff; border-color: rgba(67,216,255,.35); background: rgba(67,216,255,.11); }
+
+@media (max-width: 560px) {
+  .app-shell { width: calc(100% - 16px); padding-top: 10px; }
+  .topbar { padding: 10px; margin-bottom: 12px; }
+  .brand-title { font-size: 1.06rem; }
+  .brand-sub { font-size: .62rem; }
+  .brand-mark { width: 42px; height: 42px; border-radius: 14px; }
+  .hero-card { padding: 16px; border-radius: 21px; }
+  .hero-title { font-size: clamp(1.65rem, 8.5vw, 2.55rem); letter-spacing: .07em; }
+  .hero-desc { font-size: .78rem; line-height: 1.5; }
+  .tabs { top: 6px; border-radius: 18px; }
+  .tab-btn { min-height: 40px; font-size: .62rem; letter-spacing: .055em; }
+  .panel { padding: 14px; border-radius: 21px; }
+  .section-title { font-size: 1.08rem; }
+  .section-desc { font-size: .76rem; }
+  .input-box { min-height: 50px; border-radius: 16px; }
+  .input-box input { height: 48px; font-size: .82rem; }
+  .inline-tools { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .inline-tools .btn { padding: 0 8px; font-size: .72rem; min-height: 39px; }
+  .music-tools .wide-tool { min-height: 42px; }
+  .btn { min-height: 40px; font-size: .76rem; padding: 0 12px; }
+  .result-actions { grid-template-columns: 1fr; }
+  .media-row { padding: 10px; }
+  .media-meta strong { font-size: .86rem; }
+  .media-meta span { font-size: .66rem; }
+  .media-badges { gap: 5px; margin-top: 7px; }
+  .media-pill { min-height: 23px; padding: 0 7px; font-size: .6rem; }
+  .success-card span, .error-card span { font-size: .74rem; }
+  .filter-btn { min-height: 32px; font-size: .7rem; padding: 0 9px; }
+}
