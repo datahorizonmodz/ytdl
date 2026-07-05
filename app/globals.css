@@ -241,7 +241,7 @@ svg { width: 20px; height: 20px; stroke-width: 2.35; }
   box-shadow: 0 14px 32px rgba(38,100,255,.25), inset 0 1px 0 rgba(255,255,255,.22);
 }
 .tab-panel { transform-origin: top center; animation: tabPanelIn .38s cubic-bezier(.22, 1, .36, 1) both; }
-@keyframes tabPanelIn { from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(8px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+@keyframes tabPanelIn { from { opacity: 0; transform: translateY(10px) scale(.995); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 .yt-layout { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 16px; align-items: start; }
 .panel { padding: clamp(18px, 4vw, 30px); margin-bottom: 18px; }
@@ -559,4 +559,80 @@ svg { width: 20px; height: 20px; stroke-width: 2.35; }
   .media-pill { min-height: 23px; padding: 0 7px; font-size: .6rem; }
   .success-card span, .error-card span { font-size: .74rem; }
   .filter-btn { min-height: 32px; font-size: .7rem; padding: 0 9px; }
+}
+
+
+/* V3 polish: label badge rapi + tab switch tanpa blur. Karena label dua baris itu tindak pidana UI ringan. */
+.tab-panel {
+  animation: tabPanelIn .22s ease-out both;
+  filter: none !important;
+}
+@keyframes tabPanelIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.media-badges {
+  align-items: center;
+  row-gap: 6px;
+  column-gap: 6px;
+  overflow: visible;
+}
+.media-pill {
+  flex: 0 0 auto;
+  min-height: 26px;
+  height: 26px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap !important;
+  text-wrap: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-height: 1 !important;
+  text-align: center;
+  vertical-align: middle;
+}
+.media-pill.audio-state {
+  min-width: max-content;
+  padding-inline: 9px 10px;
+}
+.media-pill svg {
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+.media-meta {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.media-meta > span {
+  max-width: 100%;
+}
+
+@media (max-width: 560px) {
+  .media-row-top {
+    align-items: flex-start;
+  }
+  .media-badges {
+    gap: 5px;
+  }
+  .media-pill {
+    min-height: 24px;
+    height: 24px;
+    padding: 0 8px;
+    font-size: .58rem;
+    letter-spacing: .015em;
+    max-width: none;
+  }
+  .media-pill.audio-state {
+    padding-inline: 8px 9px;
+  }
+  .media-pill svg {
+    flex-basis: 12px;
+    width: 12px;
+    height: 12px;
+  }
 }
