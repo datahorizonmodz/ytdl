@@ -1251,7 +1251,7 @@ export default function Home() {
             <Youtube />
           </span>
           <div>
-            <h1 className="brand-title">6767 YT</h1>
+            <h1 className="brand-title">YT DOWNLOADER</h1>
             <p className="brand-sub">Video • Music • Thumbnail • History</p>
           </div>
         </div>
@@ -1271,13 +1271,13 @@ export default function Home() {
       <section className="hero">
         <div className="hero-card">
           <span className="hero-kicker">
-            <Sparkles /> DOWNR SYSTEM DIPERTAHANKAN
+            <Sparkles /> DOWNLOAD VIDEO/MUSIK
           </span>
           <h2 className="hero-title">
             YouTube <span>Media</span> Tools
           </h2>
           <p className="hero-desc">
-            Tampilan ala 6767 Scrapper, tapi mesin download tetap sistem yang
+            Tampilan ala Scrapper, tapi mesin download tetap sistem yang
             sudah berhasil di Vercel. Jadi bajunya cyber, mesinnya tidak
             diganti. Jarang-jarang manusia meminta hal masuk akal.
           </p>
