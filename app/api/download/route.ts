@@ -55,8 +55,17 @@ export async function POST(req: Request) {
       return json({ Status: false, Error: "URL is required" }, 400);
     }
 
-    const result = (await downr(url)) as DownloadResult;
-    return json(result, result.Status ? 200 : 502);
+ const result = (await downr(url)) as {
+  Status?: boolean;
+  Code?: number;
+  Input?: string | null;
+  Endpoint?: string | null;
+  Result?: unknown;
+  Error?: string | null;
+  [key: string]: unknown;
+};
+
+return json(result, result.Status ? 200 : 502);
   } catch (error) {
     return json(
       {
